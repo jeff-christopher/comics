@@ -1,4 +1,3 @@
-const { response } = require('express');
 const express = require('express');
 const db = require('./models/index');
 
@@ -8,6 +7,9 @@ const port = 3000;
 app.get('/', (req, res) => {
     res.send('Hellow World!!');
 });
+
+db.comic.belongsTo(db.user, { constraints: true, onDelete: 'CASCADE' });
+db.user.hasMany(db.comic);
 
 db.sequelize.sync({ force: true })
     .then(response => {
