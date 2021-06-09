@@ -1,19 +1,25 @@
-module.exports = (sequelize, Sequelize) => {
-    const Comic = sequelize.define("comic", {
-        name: {
-            type: Sequelize.STRING,
-            primaryKey: true
-        },
-        printingday: {
-            type: Sequelize.DATEONLY
-        },
-        synopsis: {
-            type: Sequelize.STRING
-        },
-        editorial: {
-            type: Sequelize.ENUM('MARVEL', 'DC Comics', 'IMAGE')
-        }
-    });
+const { DataTypes } = require('sequelize');
+const sequelize = require('../util/db');
 
-    return Comic;
-};
+const Comic = sequelize.define("comic", {
+    id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+        allowNull: false,
+    },
+    name: {
+        type: DataTypes.STRING,
+    },
+    printingday: {
+        type: DataTypes.DATEONLY
+    },
+    synopsis: {
+        type: DataTypes.STRING
+    },
+    editorial: {
+        type: DataTypes.ENUM('MARVEL', 'DC Comics', 'IMAGE')
+    }
+});
+
+module.exports = Comic;

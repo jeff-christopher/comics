@@ -13,12 +13,4 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
     }
 });
 
-const db = {};
-
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
-
-db.user = require('./user')(sequelize, Sequelize);
-db.comic = require('./comic')(sequelize, Sequelize);
-
-module.exports = db;
+module.exports = sequelize;
